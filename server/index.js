@@ -12,39 +12,44 @@ import channelRoutes from "./routes/ChannelRoutes.js";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT;
-const databaseURL = process.env.DATABSE_URL;
+const PORT = process.env.PORT || 5000;
+const DATABASE_URL = process.env.DATABASE_URL;
+const CLIENT_ORIGIN = process.env.ORIGIN; 
 
-app.use(
-  cors({
-    origin: [process.env.ORIGIN],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    credentials: true,
-  })
-);
+// === CORS Setup ===
+app.use(cors({
+  origin: [CLIENT_ORIGIN, "https://chat-application-eight-phi.vercel.app"], // Add local dev frontend if needed(e.,g,http://localhost:5173)
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  credentials: true,
+}));
 
-app.use("/uploads/profiles", express.static("uploads/profiles"));
-app.use("/uploads/files", express.static("uploads/files"));
-
+// === Middlewares ===
 app.use(cookieParser());
 app.use(express.json());
 
+// === Static Files ===
+app.use("/uploads/profiles", express.static("uploads/profiles"));
+app.use("/uploads/files", express.static("uploads/files"));
+
+// === Routes ===
 app.use("/api/auth", authRoutes);
 app.use("/api/contacts", contactsRoutes);
 app.use("/api/messages", messagesRoutes);
 app.use("/api/channel", channelRoutes);
 
-const server = app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+// === Server Start ===
+const server = app.listen(PORT, () => {
+  console.log(`🚀 Server is running at http://localhost:${PORT}`);
 });
 
+// === Socket Setup ===
 setupSocket(server);
 
-mongoose
-  .connect(databaseURL)
+// === DB Connection ===
+mongoose.connect(DATABASE_URL)
   .then(() => {
-    console.log("DB Connetion Successfull");
+    console.log("✅ MongoDB connected successfully");
   })
   .catch((err) => {
-    console.log(err.message);
+    console.error("❌ MongoDB connection failed:", err.message);
   });
