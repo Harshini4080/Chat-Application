@@ -24,7 +24,7 @@ A full-stack real-time chat application where users can register, log in, create
 ### Frontend:
 - React.js
 - Vite
-- Tailwind CSS / Ant Design (if used)
+- Tailwind CSS
 - Zustand (State Management)
 - Axios
 
@@ -104,6 +104,7 @@ VITE_SERVER_URL=http://localhost:5000
 VITE_SOCKET_URL=http://localhost:5000
 
 ```
+Run Frontend:
 
 ```bash
 npm run dev
