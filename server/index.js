@@ -37,6 +37,11 @@ app.use("/api/contacts", contactsRoutes);
 app.use("/api/messages", messagesRoutes);
 app.use("/api/channel", channelRoutes);
 
+// === Root route to confirm server is working ===
+app.get("/", (req, res) => {
+  res.send("✅ Backend is working!");
+});
+
 // === Server Start ===
 const server = app.listen(PORT, () => {
   console.log(`🚀 Server is running at http://localhost:${PORT}`);
