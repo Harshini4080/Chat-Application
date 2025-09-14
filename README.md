@@ -12,8 +12,11 @@ A full-stack real-time chat application where users can register, log in, create
 ---
 
 ##  Screenshot
+1. Users can register and log in based on their role: Instructor or Student.  
+   Instructors must also provide a course title and description during registration.
 
-(![Screenshot 2025-07-02 104118](https://github.com/user-attachments/assets/a75be7ca-ba04-4d2c-b449-b6b026ae7b1f)
+(<img width="1902" height="859" alt="Screenshot 2025-09-14 110401" src="https://github.com/user-attachments/assets/af0097ca-c953-4f0f-b242-088fc9a5fa39" />
+)
 (![Screenshot 2025-07-02 104200](https://github.com/user-attachments/assets/f1a5eb7e-6e24-48c2-b35c-9cc672f20054)
 (![Screenshot 2025-07-02 104136](https://github.com/user-attachments/assets/b27923eb-cb9c-45c3-be6b-92054afe59f0)
 
